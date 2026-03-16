@@ -1,0 +1,92 @@
+﻿<Window x:Class="StudentApp.Views.EditStudentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:StudentApp.Controls"
+        Title="Edit Student"
+        Height="420"
+        Width="520"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Student Image -->
+        <StackPanel Grid.Row="0" Grid.Column="2" Grid.RowSpan="5" HorizontalAlignment="Center">
+
+            <Border BorderBrush="Gray" BorderThickness="1" Padding="5">
+                <Image Source="{Binding Student.Image}"
+                       Width="110"
+                       Height="110"
+                       Stretch="Fill"/>
+            </Border>
+
+            <Button Content="Browse Image"
+                    Margin="5"
+                    Command="{Binding BrowseImageCommand}"/>
+        </StackPanel>
+
+        <!-- Name -->
+        <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding Student.Name, Mode=TwoWay}" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <!-- Age -->
+        <TextBlock Text="Age" Grid.Row="1" Grid.Column="0"/>
+        <ctrl:AgeControl Age="{Binding Student.Age, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+        <!-- Stream -->
+        <TextBlock Text="Stream" Grid.Row="2" Grid.Column="0"/>
+        <ComboBox ItemsSource="{Binding Streams}"
+                  SelectedItem="{Binding Student.Stream}"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  Margin="5"/>
+
+        <!-- Date -->
+        <TextBlock Text="Date Of Joining" Grid.Row="3" Grid.Column="0"/>
+        <DatePicker SelectedDate="{Binding Student.DateOfJoining}"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="5"/>
+
+        <!-- Due Fee -->
+        <TextBlock Text="Due Fee" Grid.Row="4" Grid.Column="0"/>
+        <TextBox Text="{Binding Student.DueFee}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <!-- Total Fee -->
+        <TextBlock Text="Total Fee" Grid.Row="5" Grid.Column="0"/>
+        <TextBox Text="{Binding Student.TotalFee}" Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button Content="Update"
+                    Width="100"
+                    Margin="10"
+                    Command="{Binding UpdateCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+
+            <Button Content="Close"
+                    Width="100"
+                    Margin="10"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
